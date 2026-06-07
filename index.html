@@ -3,77 +3,182 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="guns.lol – moderne, schnelle und sichere statische Website. Bereit für GitHub Pages und mobil optimiert." />
-  <title>guns.lol</title>
+  <meta name="description" content="BLEED Portal – Login, Benutzerkonto und Konfiguration in einer statischen Website." />
+  <title>BLEED</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="page-wrapper">
     <header class="site-header">
-      <div class="logo">guns.lol</div>
+      <div class="logo">BLEED</div>
       <nav>
         <a href="#hero">Start</a>
+        <a href="#portal">Portal</a>
         <a href="#features">Features</a>
-        <a href="#about">Über</a>
-        <a href="#contact">Kontakt</a>
+        <a href="#footer">Kontakt</a>
       </nav>
+      <button class="button button-tertiary" id="portalButton">Portal</button>
     </header>
 
     <main>
       <section id="hero" class="hero-section">
         <div class="hero-content">
-          <span class="eyebrow">guns.lol</span>
-          <h1>Die moderne statische Landingpage</h1>
-          <p>Eine optimierte HTML/CSS/JavaScript-Seite, die sofort online einsatzbereit ist. Mobile, performant und fehlerfrei gestaltet.</p>
+          <span class="eyebrow">BLEED</span>
+          <h1>Das konfigurierbare Benutzerportal</h1>
+          <p>Registriere dich, melde dich an und verwalte deine Einstellungen direkt im Browser. Ein statisches Portal mit Login und Konfiguration.</p>
           <div class="hero-actions">
-            <a href="#features" class="button button-primary">Website ansehen</a>
-            <a href="#contact" class="button button-secondary">Kontakt</a>
+            <a href="#portal" class="button button-primary">Zum Portal</a>
+            <a href="#features" class="button button-secondary">Mehr erfahren</a>
           </div>
         </div>
         <div class="hero-visual">
-          <div class="gun-card" aria-hidden="true">
-            <div class="barrel"></div>
-            <div class="body"></div>
-            <div class="trigger"></div>
+          <div class="portal-card" aria-hidden="true">
+            <div class="portal-icon">B</div>
           </div>
-          <div class="hero-note">Ein klarer Stil, der sofort funktioniert.</div>
+          <div class="hero-note">Bleed ist dein Portal für Benutzer, Konfiguration und Zugang.</div>
+        </div>
+      </section>
+
+      <section id="portal" class="section-panel auth-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Portal</p>
+            <h2>Login oder Registrierung</h2>
+            <p>Erstelle dein Konto und verwalte anschließend deine BLEED-Konfiguration.</p>
+          </div>
+        </div>
+
+        <div class="auth-layout">
+          <div class="auth-tabs">
+            <button class="tab-button active" data-mode="login">Login</button>
+            <button class="tab-button" data-mode="register">Registrieren</button>
+          </div>
+
+          <div class="auth-card" id="loginCard">
+            <form id="loginForm">
+              <label for="loginUsername">Benutzername</label>
+              <input type="text" id="loginUsername" required />
+              <label for="loginPassword">Passwort</label>
+              <input type="password" id="loginPassword" required />
+              <button type="submit" class="button button-primary">Einloggen</button>
+            </form>
+          </div>
+
+          <div class="auth-card hidden" id="registerCard">
+            <form id="registerForm">
+              <label for="registerUsername">Benutzername</label>
+              <input type="text" id="registerUsername" required />
+              <label for="registerPassword">Passwort</label>
+              <input type="password" id="registerPassword" required />
+              <label for="registerEmail">E-Mail</label>
+              <input type="email" id="registerEmail" required />
+              <button type="submit" class="button button-primary">Registrieren</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="auth-message" id="authMessage"></div>
+      </section>
+
+      <section id="dashboard" class="section-panel hidden dashboard-panel">
+        <div class="dashboard-header">
+          <div>
+            <p class="eyebrow">Konto</p>
+            <h2>Willkommen zurück, <span id="displayName"></span></h2>
+            <p>Verwalte deine BLEED-Einstellungen, speichere dein Profil und konfiguriere deine persönlichen Optionen.</p>
+          </div>
+          <button class="button button-secondary" id="logoutButton">Abmelden</button>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="dashboard-card">
+            <h3>Profil</h3>
+            <div class="field-row">
+              <label for="profileName">Name</label>
+              <input type="text" id="profileName" />
+            </div>
+            <div class="field-row">
+              <label for="profileEmail">E-Mail</label>
+              <input type="email" id="profileEmail" disabled />
+            </div>
+            <div class="field-row">
+              <label for="profileTag">Display-Tag</label>
+              <input type="text" id="profileTag" />
+            </div>
+          </article>
+
+          <article class="dashboard-card">
+            <h3>Konfiguration</h3>
+            <div class="field-row toggle-row">
+              <label for="configActive">Aktiviert</label>
+              <input type="checkbox" id="configActive" />
+            </div>
+            <div class="field-row toggle-row">
+              <label for="configNotifications">Benachrichtigungen</label>
+              <input type="checkbox" id="configNotifications" />
+            </div>
+            <div class="field-row">
+              <label for="configRegion">Region</label>
+              <select id="configRegion">
+                <option value="EU">EU</option>
+                <option value="NA">NA</option>
+                <option value="ASIA">ASIA</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <label for="configShortcut">Schnellzugriff</label>
+              <input type="text" id="configShortcut" />
+            </div>
+          </article>
+
+          <article class="dashboard-card">
+            <h3>Status</h3>
+            <p>Deine Einstellungen werden lokal in deinem Browser gespeichert. Du kannst dein Konto jederzeit abmelden.</p>
+            <p><strong>Speicherort:</strong> lokal</p>
+            <p><strong>Sicherheit:</strong> Für echte Server-Login-Funktionen ist ein Backend erforderlich.</p>
+          </article>
+        </div>
+
+        <div class="dashboard-actions">
+          <button class="button button-primary" id="saveSettingsButton">Einstellungen speichern</button>
+          <span id="saveStatus" class="save-status"></span>
         </div>
       </section>
 
       <section id="features" class="section-panel">
-        <h2>Was diese Seite bietet</h2>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Funktionen</p>
+            <h2>Bleed Portal in Aktion</h2>
+          </div>
+        </div>
         <div class="feature-grid">
           <article>
-            <h3>Blitzschnell</h3>
-            <p>Vollständig statisch, ohne Server-Rendering oder unnötige Abhängigkeiten.</p>
+            <h3>Login & Benutzerkonto</h3>
+            <p>Anmeldung und Registrierung direkt im Browser mit lokalem Speicher.</p>
           </article>
           <article>
-            <h3>GitHub Pages bereit</h3>
-            <p>Einfach hochladen, Branch wählen und live schalten.</p>
+            <h3>Konfiguration</h3>
+            <p>Persönliche Einstellungen speichern und jederzeit abrufen.</p>
           </article>
           <article>
-            <h3>Responsives Design</h3>
-            <p>Als Landingpage auf Desktop, Tablet und Smartphone optimiert.</p>
+            <h3>Portal-Design</h3>
+            <p>Moderne UI im Stil einer Dashboard-Webseite.</p>
           </article>
           <article>
-            <h3>Fehlerfrei</h3>
-            <p>Saubere HTML-Struktur, validierbares CSS und funktionales JavaScript.</p>
+            <h3>GitHub Pages ready</h3>
+            <p>Statisch und bereit zum Deploy auf GitHub Pages.</p>
           </article>
         </div>
       </section>
-
-      <section id="about" class="section-panel highlight-panel">
-        <h2>Fertig für den Einsatz</h2>
-        <p>Das Layout ist vollständig fertig. Keine Platzhalter, keine Demo-Texte. Dieses Projekt ist eine reale statische Website, die du sofort online stellen kannst.</p>
-      </section>
     </main>
 
-    <footer id="contact" class="site-footer">
+    <footer id="footer" class="site-footer">
       <div>
-        <h3>guns.lol</h3>
-        <p>Bereit zum Hosten auf GitHub Pages oder jedem beliebigen Static-Hosting-Anbieter.</p>
+        <h3>BLEED</h3>
+        <p>Ein statisches Portal mit Benutzeranmeldung und Konfiguration. Ideal zur Liveschaltung mit GitHub Pages.</p>
       </div>
-      <div class="footer-note">Erstellt als stabile, produktionsfähige Landingpage.</div>
+      <div class="footer-note">Erstellt als stabiles statisches Interface.</div>
     </footer>
   </div>
 

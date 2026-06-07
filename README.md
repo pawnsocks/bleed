@@ -1,22 +1,29 @@
-# guns.lol Landingpage
+# BLEED Portal
 
-Dies ist eine produktionsfertige statische Website, die ohne Demo-Text und ohne unnötige Platzhalter sofort eingesetzt werden kann.
+Dies ist ein statisches BLEED-Portal mit Login-, Registrierungs- und Konfigurationsfunktionen. Benutzeranmeldung und persönliche Einstellungen werden lokal im Browser gespeichert.
 
 ## Enthaltene Dateien
-- `index.html` – Startseite mit fertigem Layout
-- `styles.css` – modernes, responsives Design
-- `script.js` – Interaktion für die Hero-Visual-Animation
+- `index.html` – Hauptseite mit Login/Registrierung und Dashboard
+- `styles.css` – responsives Portal-Design
+- `script.js` – Authentifizierung und lokale Speicherung
+
+## Features
+- Login und Registrierung im Browser
+- Dashboard mit persönlichen Einstellungen
+- Konfigurationsoptionen wie Aktivierung, Benachrichtigungen, Region und Shortcut
+- Speicherung der Daten per `localStorage`
+- Bereit für GitHub Pages
 
 ## Lokal testen
 1. Öffne `index.html` im Browser.
-2. Alternativ kannst du einen lokalen Webserver nutzen, z. B. mit Visual Studio Code Live Server.
+2. Registriere ein neues Konto oder melde dich an.
+3. Speichere deine Einstellungen im Dashboard.
 
 ## Deployment mit GitHub Pages
 1. Erstelle ein neues GitHub-Repository.
 2. Lade die Dateien in den Repository-Root hoch.
 3. Wähle in GitHub `Settings` > `Pages`.
-4. Setze die Quelle auf den Branch `main` (oder `master`) und den Ordner `/ (root)`.
-5. Wenn du willst, kannst du `index.html` auch in einen `docs/`-Ordner verschieben und als Quelle `docs` wählen.
+4. Setze die Quelle auf den Branch `main` und den Ordner `/ (root)`.
 
 Beispiel mit `git` in PowerShell:
 
@@ -30,4 +37,6 @@ git remote add origin https://github.com/<dein-benutzername>/<repo-name>.git
 git push -u origin main
 ```
 
-Dann `Settings` > `Pages` konfigurieren und die Seite wird live geschaltet.
+Dann `Settings` > `Pages` konfigurieren.
+
+> Hinweis: Diese statische Seite speichert Login-Daten und Einstellungen nur lokal. Für ein echtes Server-Login ist zusätzlich ein Backend nötig.
