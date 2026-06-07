@@ -196,6 +196,9 @@ button {
 .auth-layout {
   display: grid;
   gap: 1.5rem;
+  max-width: 980px;
+  margin: 0 auto 1.5rem;
+  grid-template-columns: 1fr 1fr;
 }
 
 .auth-tabs {
@@ -225,6 +228,21 @@ button {
   border-radius: 1.5rem;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.auth-card input::placeholder {
+  color: rgba(235,240,255,0.45);
+}
+
+.auth-card input:focus {
+  outline: none;
+  box-shadow: 0 8px 24px rgba(50, 140, 255, 0.08);
+  border-color: rgba(100,150,255,0.5);
+}
+
+.auth-card .button-primary {
+  width: 100%;
+  padding: 0.95rem 1rem;
 }
 
 .auth-card form {
@@ -269,7 +287,7 @@ button {
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
   gap: 1.5rem;
 }
 

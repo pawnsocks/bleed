@@ -62,8 +62,12 @@ function saveUserConfig(username, config) {
 }
 
 function showMessage(message, type = 'info') {
+  if (!authMessage) return;
   authMessage.textContent = message;
   authMessage.style.color = type === 'error' ? '#ff8da1' : '#a7d0ff';
+  if (message) {
+    setTimeout(() => { if (authMessage) authMessage.textContent = ''; }, 6000);
+  }
 }
 
 function switchMode(mode) {
@@ -136,8 +140,10 @@ function handleRegister(event) {
   users.push({ username, password, email });
   saveUsers(users);
   saveUserConfig(username, { ...defaultConfig, username, email });
-  showMessage('Registrierung erfolgreich. Bitte einloggen.', 'info');
-  switchMode('login');
+  // Auto-login after registration for better UX
+  setCurrentUser(username);
+  showMessage('Registrierung erfolgreich. Du bist nun angemeldet.', 'info');
+  showDashboard(username);
 }
 
 function handleLogout() {
@@ -194,3 +200,18 @@ function init() {
 }
 
 init();
+
+// Ensure basic demo user exists to allow immediate testing
+;(function ensureDemoUser(){
+  try {
+    const users = getUsers();
+    if (!users || users.length === 0) {
+      users.push({ username: 'demo', password: 'demo', email: 'demo@example.com' });
+      saveUsers(users);
+      saveUserConfig('demo', { ...defaultConfig, username: 'demo', email: 'demo@example.com' });
+      console.info('BLEED: demo user created (demo/demo)');
+    }
+  } catch (e) {
+    console.warn('BLEED: could not create demo user', e);
+  }
+})();
